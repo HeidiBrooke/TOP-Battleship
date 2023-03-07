@@ -1,0 +1,37 @@
+{
+  "name": "top-battleship",
+  "version": "1.0.0",
+  "description": "This is a project from the Odin Project. The objective is to use TDD to recreate battleship with HTML, CSS, and Javascript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "check": "npm test",
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "format": "npx eslint-config-prettier"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HeidiBrooke/TOP-Battleship.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HeidiBrooke/TOP-Battleship/issues"
+  },
+  "homepage": "https://github.com/HeidiBrooke/TOP-Battleship#readme",
+  "devDependencies": {
+    "css-loader": "^6.7.3",
+    "eslint": "^8.35.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.7.0",
+    "eslint-plugin-import": "^2.27.5",
+    "html-webpack-plugin": "^5.5.0",
+    "jest": "^29.5.0",
+    "prettier": "2.8.4",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  }
+}
