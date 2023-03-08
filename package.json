@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "check": "npm test",
+    "check": "test --watch",
     "build": "webpack",
     "watch": "webpack --watch",
     "format": "npx eslint-config-prettier"
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/HeidiBrooke/TOP-Battleship#readme",
   "devDependencies": {
+    "@babel/preset-env": "^7.20.2",
     "css-loader": "^6.7.3",
     "eslint": "^8.35.0",
     "eslint-config-airbnb-base": "^15.0.0",
