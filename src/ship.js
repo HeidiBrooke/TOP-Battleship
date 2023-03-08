@@ -102,7 +102,33 @@ const ship = (l, startPoint, direction) => {
     const coords = generateCoordinates(l, startPoint, direction, alpha);
     const hitLog = [0, 0, 0, 0, 0];
 
-    return {length, coords, hitLog};
+    const hit = (coordPair) => {
+        let index;
+        coords.forEach(coordinate => {
+            if((coordinate[0] == coordPair[0]) && (coordinate[1] == coordPair[1]) ){
+                index = coords.indexOf(coordinate);
+            }
+        })
+        if(index !== undefined){
+            hitLog[index] = 1;
+        }
+        return
+    }
+
+    const isSunk = () => {
+        if(!hitLog.includes(0)){
+            return true;
+        }
+        return false;
+        
+    }
+
+    return {length, coords, hitLog, hit, isSunk};
 }
+
+
+
+
+
 
 export default ship;

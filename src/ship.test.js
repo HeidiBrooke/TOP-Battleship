@@ -1,5 +1,25 @@
 import ship  from './ship.js';
 
+const VL = ship(5, ['a', 0], 'r');
+VL.hit(['a', 0]);
+VL.hit(['a', 9]);
+
+const VL2 = ship(5, ['a', 0], 'r');
+VL2.hit(['a', 0]);
+VL2.hit(['a', 3]);
+
+const VL3 = ship(5, ['a', 0], 'r');
+VL3.hitLog = [1, 1, 1, 1, 1];
+VL3.hit(['a', 0]);
+VL3.hit(['a', 1]);
+VL3.hit(['a', 2]);
+VL3.hit(['a', 3]);
+VL3.hit(['a', 4]);
+
+const VL3hits = VL3.hitLog;
+
+const testArray = [1, 0, 0, 0, 0];
+
 test('make long ship in bounds right', () => {
   expect(ship(5, ["a", 5], "r")).toMatchObject({
     length: 5,
@@ -44,4 +64,35 @@ test('make long ship out of bounds right', () => {
   });
 test('make long ship out of bounds down', () => {
     expect(ship(5, ["g",9], "d")).toBe('Ship goes out of bounds. Try again');
+  });
+
+test('VL takes hit in [a, 1]', () => {
+    expect(VL.hitLog).toMatchObject(
+        testArray);
+  });
+
+test('VL takes miss in [a, 9]', () => {
+    expect(VL.hitLog).toMatchObject(
+        [1, 0, 0, 0, 0]);
+  });
+
+
+test('VL2 takes hit in [a, 3]', () => {
+    expect(VL2.hitLog).toMatchObject(
+        [1, 0, 0, 1, 0]);
+  });
+
+test('VL2 is sunk', () => {
+    expect(VL2.isSunk()).toBe(
+        false);
+  });
+
+test('VL3 is sunk', () => {
+    expect(VL3.isSunk()).toBe(
+        true);
+  });
+
+test('VL3 hit log', () => {
+    expect(VL3hits).toMatchObject(
+        [1, 1, 1, 1, 1]);
   });
