@@ -1,6 +1,29 @@
+const alphas = "abcdefghij";
+const alpha = alphas.split("");
+
+function allowDrop(ev) {
+    ev.preventDefault();
+  }
+
+  
+
+function getlocation(ev) {
+    ev.preventDefault();
+    const data = document.getElementsByClassName('dragItem');
+    const node = data[0];
+    let loc = ev.target.id;
+    console.log(loc)
+    console.log(node)
+    loc = loc.split('');
+     const col1 = Number(loc[1]);
+     const col2 = col1 + 1;
+     const row1 = alpha.indexOf(loc[0]) + 2;
+     const row2 = row1 + 1
+     node.style.gridArea = `${row1}/${col1}/${row2}/${col2}`; 
+     ev.target.parentElement.parentElement.appendChild(node);
+  }
+
 const drawBoard = (plyrVal, type) => {
-    const alphas = "abcdefghij";
-    const alpha = alphas.split("");
     const grid = document.createElement('div');
     grid.classList.add('board');
     const topLabel = document.createElement('div');
@@ -12,6 +35,8 @@ const drawBoard = (plyrVal, type) => {
     const innerBoard = document.createElement('div');
     innerBoard.classList.add('innerBoard');
     grid.appendChild(innerBoard);
+    // grid.setAttribute('ondragover', allowDrop);
+    // grid.setAttribute('ondrop',drop);
 
     for(let i = 0; i < 10;){
         const div = document.createElement('div');
@@ -37,6 +62,8 @@ const drawBoard = (plyrVal, type) => {
             div.classList.add(`unit${type}`);
             innerBoard.appendChild(div);
             div.id = `${alpha[i]}${j}${type}`;
+            div.addEventListener('dragover', allowDrop);
+            div.addEventListener('drop', getlocation);
             j+=1;
         }
         i+=1;
@@ -46,6 +73,7 @@ const drawBoard = (plyrVal, type) => {
     grid.appendChild(corner);
     corner.classList.add('corner');
 
+    
     
     
     return grid;
