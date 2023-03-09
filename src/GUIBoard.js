@@ -1,4 +1,4 @@
-const drawBoard = (plyrVal) => {
+const drawBoard = (plyrVal, type) => {
     const alphas = "abcdefghij";
     const alpha = alphas.split("");
     const grid = document.createElement('div');
@@ -34,9 +34,9 @@ const drawBoard = (plyrVal) => {
     for(let i = 0; i < 10;){
         for(let j= 0; j < 10;){
             const div = document.createElement('div');
-            div.classList.add('unit');
+            div.classList.add(`unit${type}`);
             innerBoard.appendChild(div);
-            div.id = `${alpha[i]}${j}`;
+            div.id = `${alpha[i]}${j}${type}`;
             j+=1;
         }
         i+=1;

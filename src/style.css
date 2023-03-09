@@ -91,7 +91,7 @@ body {
     
 }
 
-.unit{
+.unitl, .unitm{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -103,18 +103,20 @@ body {
     border-bottom: solid 1px rgb(94, 119, 133);
 }
 
-.unit:hover{
+.unitl:hover, .unitm:hover{
     background-color:rgb(117, 149, 168);
 }
 
-.miss{
+.miss, .miss:hover{
     background-color:rgb(49, 161, 226);
 }
 
-.hit{
+.hit, .hit:hover{
     background-color:rgb(228, 100, 100);
 }
 
-.ship{
+
+
+.ship, .ship:hover{
     background-color:rgb(73, 106, 126);
 }
