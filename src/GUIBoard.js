@@ -1,8 +1,7 @@
-const drawLog = (plyrVal) => {
+const drawBoard = (plyrVal) => {
     const alphas = "abcdefghij";
     const alpha = alphas.split("");
     const grid = document.createElement('div');
-    grid.id = 'log';
     grid.classList.add('board');
     const topLabel = document.createElement('div');
     grid.appendChild(topLabel);
@@ -40,13 +39,16 @@ const drawLog = (plyrVal) => {
             div.id = `${alpha[i]}${j}`;
             j+=1;
         }
-        
         i+=1;
     }
+
+    const corner = document.createElement('div');
+    grid.appendChild(corner);
+    corner.classList.add('corner');
 
     
     
     return grid;
 }
 
-export default drawLog
+export default drawBoard
