@@ -1,5 +1,9 @@
 import drawBoard from "./GUIBoard";
+import ship from "./ship";
 import style from './style.css';
+
+const alphas = "abcdefghij";
+const alpha = alphas.split("");
 
 console.log('rendering!')
 const container = document.createElement('div');
@@ -17,3 +21,13 @@ miss.classList.add('miss')
 
 const hit = document.getElementById('a1');
 hit.classList.add('hit')
+
+const shipdivs  = [];
+for(let i =0; i <5;){
+    shipdivs.push(document.getElementById(`b${i}`));
+    i+=1;
+}
+shipdivs.forEach(divEl => {
+    divEl.classList.add('ship')
+})
+
