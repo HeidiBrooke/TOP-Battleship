@@ -95,10 +95,22 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color:rgb(167, 192, 207);
+    background-color:rgb(176, 200, 214);
     width: 25px;
     height: 25px;
     font-size: 14px;
     border-right: solid 1px rgb(94, 119, 133);
     border-bottom: solid 1px rgb(94, 119, 133);
+}
+
+.unit:hover{
+    background-color:rgb(117, 149, 168);
+}
+
+.miss{
+    background-color:rgb(49, 161, 226);
+}
+
+.hit{
+    background-color:rgb(228, 100, 100);
 }

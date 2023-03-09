@@ -11,3 +11,9 @@ const mainBoard = drawBoard();
 mainBoard.id = 'mainBoard';
 container.appendChild(log);
 container.appendChild(mainBoard);
+
+const miss = document.getElementById('a0');
+miss.classList.add('miss')
+
+const hit = document.getElementById('a1');
+hit.classList.add('hit')
