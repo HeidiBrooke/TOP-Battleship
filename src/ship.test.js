@@ -21,6 +21,8 @@ const VL3hits = VL3.hitLog;
 
 const testArray = [1, 0, 0, 0, 0];
 
+const S1 = ship(2, ["a", 0], "r");
+
 test("make long ship in bounds right", () => {
   expect(ship(5, ["a", 5], "r")).toMatchObject({
     length: 5,
@@ -136,4 +138,16 @@ test("make short ship in bounds left", () => {
     ],
     hitLog: [0, 0],
   });
+});
+
+test("getCoords functions", () => {
+  expect(S1.getCoords()).toEqual(
+    [['a', 0],['a', 1]]
+  );
+});
+
+test("Sunk value is accurate", () => {
+  expect(S1.sunk).toBe(
+    false
+  );
 });

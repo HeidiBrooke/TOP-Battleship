@@ -103,9 +103,20 @@ const ship = (l, startPoint, direction) => {
   if (!validEntry(l, startPoint, direction, alpha)) {
     return "Ship goes out of bounds. Try again";
   }
+
   const length = l;
   const coords = generateCoordinates(l, startPoint, direction, alpha);
   const hitLog = generateHitLog(l);
+  const isSunk = () => {
+    if (!hitLog.includes(0)) {
+      return true;
+    }
+    return false;
+  };
+  const sunk = isSunk();
+
+  const getCoords = () => coords;
+  const getHitlog = () => hitLog;
 
   const hit = (coordPair) => {
     let index;
@@ -119,14 +130,26 @@ const ship = (l, startPoint, direction) => {
     }
   };
 
-  const isSunk = () => {
-    if (!hitLog.includes(0)) {
-      return true;
+  function sink() {
+    let i = 0;
+    while (i < length) {
+      hitLog[i] = 1;
+      i += 1;
     }
-    return false;
-  };
+    return hitLog;
+  }
 
-  return { length, coords, hitLog, hit, isSunk };
+  return {
+    length,
+    coords,
+    hitLog,
+    hit,
+    isSunk,
+    getCoords,
+    getHitlog,
+    sunk,
+    sink,
+  };
 };
 
 export default ship;
