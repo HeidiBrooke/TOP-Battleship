@@ -27,11 +27,22 @@ holder.classList.add('holder');
 // holder.addEventListener('drop', getlocation);
 container.appendChild(holder)
 
+
+
 function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
     ev.target.classList.add('dragItem');
+    const node = ev.target;
+    setTimeout (() => {
+        node.style.visibility = "hidden";
+      }, 1);
   }
-function place(){
+function place(ev){
+    const node = ev.target;
+    ev.target.classList.remove('dragItem');
+    setTimeout (() => {
+        node.style.visibility = "";
+      }, 1);
 
 }
 const fakeship = document.createElement('div');
@@ -41,21 +52,21 @@ fakeship.addEventListener('dragstart', drag);
 fakeship.addEventListener('dragend', place)
 container.appendChild(fakeship);
 
-// const miss = document.getElementById('a0l');
-// miss.classList.add('miss')
+const miss = document.getElementById('a0l');
+miss.classList.add('miss')
 
-// const hit = document.getElementById('a1l');
-// hit.classList.add('hit');
+const hit = document.getElementById('a1l');
+hit.classList.add('hit');
 
 
-// const shipdivs  = [];
-// for(let i =0; i <5;){
-//     shipdivs.push(document.getElementById(`b${i}m`));
-//     i+=1;
-// }
-// shipdivs.forEach(divEl => {
-//     divEl.classList.add('ship')
-// })
+const shipdivs  = [];
+for(let i =0; i <5;){
+    shipdivs.push(document.getElementById(`b${i}m`));
+    i+=1;
+}
+shipdivs.forEach(divEl => {
+    divEl.classList.add('hit')
+})
 
 
 

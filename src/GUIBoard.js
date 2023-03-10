@@ -1,14 +1,26 @@
 const alphas = "abcdefghij";
 const alpha = alphas.split("");
 
-function allowDrop(ev) {
+function addHover(ev) {
+    ev.target.classList.add('hovered');
+}
+function unHover(ev) {
+    ev.target.classList.remove('hovered');
+}
+
+function unstyleTarget(ev) {
     ev.preventDefault();
+    ev.target.classList.remove('draghover');
   }
 
-  
+function styleTarget(ev) {
+    ev.preventDefault();
+    ev.target.classList.add('draghover');
+  }
 
 function getlocation(ev) {
     ev.preventDefault();
+    unstyleTarget(ev);
     const data = document.getElementsByClassName('dragItem');
     const node = data[0];
     let loc = ev.target.id;
@@ -62,7 +74,9 @@ const drawBoard = (plyrVal, type) => {
             div.classList.add(`unit${type}`);
             innerBoard.appendChild(div);
             div.id = `${alpha[i]}${j}${type}`;
-            div.addEventListener('dragover', allowDrop);
+            div.addEventListener('dragover', styleTarget);
+            // div.addEventListener('dragenter', styleTarget);
+            div.addEventListener('dragleave', unstyleTarget);
             div.addEventListener('drop', getlocation);
             j+=1;
         }

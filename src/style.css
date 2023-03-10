@@ -37,6 +37,8 @@ body {
     display: grid;
     grid-template-columns: repeat(11, 25px);
     grid-template-rows: repeat(11, 25px);
+    align-items: center;
+    align-content: center;
 }
 
 .topLabel {
@@ -113,6 +115,7 @@ body {
 
 .hit, .hit:hover{
     background-color:rgb(228, 100, 100);
+    border:rgb(228, 100, 100);
 }
 
 .holder{
@@ -125,3 +128,10 @@ body {
     width: 125px;
     height: 25px;
 }
+
+.draghover {
+    background-color: rgb(255, 196, 2);
+    width: 25px;
+    height:25px;
+}
+
