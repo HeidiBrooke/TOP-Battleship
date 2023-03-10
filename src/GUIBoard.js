@@ -74,10 +74,12 @@ const drawBoard = (plyrVal, type) => {
             div.classList.add(`unit${type}`);
             innerBoard.appendChild(div);
             div.id = `${alpha[i]}${j}${type}`;
-            div.addEventListener('dragover', styleTarget);
             // div.addEventListener('dragenter', styleTarget);
-            div.addEventListener('dragleave', unstyleTarget);
-            div.addEventListener('drop', getlocation);
+            if(type === 'm'){
+                div.addEventListener('dragover', styleTarget);
+                div.addEventListener('dragleave', unstyleTarget);
+                div.addEventListener('drop', getlocation);
+            }
             j+=1;
         }
         i+=1;
