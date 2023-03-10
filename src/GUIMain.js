@@ -18,8 +18,12 @@ const ships = drawShips();
 const shipHolder = document.createElement('div');
 shipHolder.classList.add('shipHolder');
 container.appendChild(shipHolder);
+
 ships.forEach(shipEl => {
-    shipHolder.appendChild(shipEl);
+    const shipHold = document.createElement('div');
+    shipHold.classList.add('shipHold')
+    shipHold.appendChild(shipEl);
+    shipHolder.appendChild(shipHold);
      manualDrag(shipEl);
 })
 }

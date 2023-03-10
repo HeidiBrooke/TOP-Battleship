@@ -19,10 +19,11 @@ const alpha = alphas.split("");
 
 
 
+let anID;
 const manualDrag = (node) => {
             const board = document.getElementById('mainBoard');
             const ball = node;
-            console.log(ball.parentElement)
+            const ogParent = ball.parentElement;
             let index = Array(ball.parentElement.children).indexOf(ball);
             
             ball.onmousedown = function(event) { 
@@ -41,15 +42,25 @@ const manualDrag = (node) => {
             // ...and put that absolutely positioned ball under the cursor
 
             let dropElem;
-
+            let dropElem1;
+            
             // centers the ball at (pageX, pageY) coordinates
             function moveAt(pageX, pageY) {
             ball.style.left = `${pageX - ball.offsetWidth / 2  }px`;
             ball.style.top = `${pageY - ball.offsetHeight / 2  }px`;
             const dropElemList = document.elementsFromPoint(pageX, pageY);
+            dropElemList.forEach(elem => {
+                // console.log('classlist')
+                // console.log(Array.from(elem.classList))
+                if(elem.classList !== undefined){
+                    if(elem.classList.contains('unitm')){
+                        console.log(`contains it! return ID: ${elem.id}`)
+                        anID = elem.id;
+                    }
+                }
+            })
             console.log(dropElemList)
-            dropElem = dropElemList[2];
-            console.log(dropElem)
+    
             // styleNode(dropElem)
             }
 
@@ -66,52 +77,39 @@ const manualDrag = (node) => {
             // (3) move the ball on mousemove
             document.addEventListener('mousemove', onMouseMove);
 
+            console.log(anID)
             // (4) drop the ball, remove unneeded handlers
             ball.onmouseup = function() {
+                console.log('MOUSEUP!')
                 ball.style.position = '';
                 ball.style.left = '';
                 ball.style.top = '';
                 ball.style.zIndex = '';
                 ball.classList.remove('dragItem')
-                if((dropElem.classList[0] !== undefined)
-                    && (dropElem.classList[0].split('')[0] === 'u'))
+                console.log(anID)
+                if(anID !== undefined)
                 {
-                    const loc = dropElem.id.split("");
+                    console.log('ID WORKED!')
+                    const loc = anID.split('');
                     console.log(loc)
-      const col1 = Number(loc[1]) + 2;
+      const col1 = Number(loc[1]) + 1;
       const col2 = col1 + 1;
-      const row1 = alpha.indexOf(loc[0]) + 2;
+      const row1 = alpha.indexOf(loc[0]) + 1;
       const row2 = row1 + 1;
       
       ball.style.gridArea = `${row1}/${col1}/${row2}/${col2}`;
-      
+      board.appendChild(ball);
                 }
-            const shipHolder = document.getElementsByClassName('shipHolder')[0]
+                else{
+                    ogParent.appendChild(ball);
+                }
+
                 
             // const drop = new Event('drop')
             
             // dropElem.dispatchEvent(drop);
             document.removeEventListener('mousemove', onMouseMove);
-            console.log('dropping')
-            console.log( dropElem)
-
-            if(dropElem.classList[0] !== 'unitm'){
-                index+=1;
-                shipHolder.insertBefore(ball, shipHolder.children[index]);
-            }
-            else{
-                board.appendChild(ball);
-            }
             
-            
-            
-            // ball.style.zIndex ='1000'
-            // const drop = new Event("drop");
-            
-            // Dispatch the event.
-            
-
-
 
             ball.onmouseup = null;
             };
