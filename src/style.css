@@ -111,11 +111,16 @@ body {
 
 .miss, .miss:hover{
     background-color:rgb(49, 161, 226);
+    border-right: solid 1px rgb(94, 119, 133);
+    border-bottom: solid 1px rgb(94, 119, 133);
 }
 
 .hit, .hit:hover{
     background-color:rgb(228, 100, 100);
-    border:rgb(228, 100, 100);
+    background-color:rgb(255, 109, 109);
+    /* border:rgb(228, 100, 100); */
+    border-right: solid 1px rgb(94, 119, 133);
+    border-bottom: solid 1px rgb(94, 119, 133);
 }
 
 .holder{
@@ -124,8 +129,9 @@ body {
 }
 
 .ship, .ship:hover{
-    background-color:rgb(73, 106, 126);
-    width: 125px;
+    display: flex;
+    background-color:rgba(73, 106, 126, 60%);
+    border: solid 2px rgb(47, 63, 71);
     height: 25px;
 }
 
@@ -135,3 +141,17 @@ body {
     height:25px;
 }
 
+.shipHolder{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    width: 300px;
+}
+
+.selected {
+    box-shadow: 0 0 10px 2px #84d4ff;
+}
+
+.rotated {
+    transform: rotate(90deg);
+}
