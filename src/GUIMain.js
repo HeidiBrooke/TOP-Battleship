@@ -1,5 +1,6 @@
 import drawBoard from "./GUIBoard";
 import drawShips from "./GUIShip";
+import manualDrag from "./manualDrag";
 import ship from "./ship";
 import style from './style.css';
 
@@ -19,6 +20,7 @@ shipHolder.classList.add('shipHolder');
 container.appendChild(shipHolder);
 ships.forEach(shipEl => {
     shipHolder.appendChild(shipEl);
+     manualDrag(shipEl);
 })
 }
 

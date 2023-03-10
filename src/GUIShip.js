@@ -1,3 +1,5 @@
+import manualDrag from "./manualDrag";
+
 function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
     ev.target.classList.add('dragItem');
@@ -24,7 +26,7 @@ function select(ev){
 
 function rotate(ev){
     if(ev.key === 'r'){
-        const selected = document.getElementsByClassName('selected')[0];
+        const selected = document.getElementsByClassName('selected')[0].parentElement;
         let currentRotation = selected.style.transform;
         if((currentRotation === '')||(currentRotation === 'rotate(0deg)') ){
             currentRotation = 0;
@@ -43,17 +45,28 @@ function rotate(ev){
     }  
 }
 
+function dragstart (ev) {
+    manualDrag(ev.target)
+    };
+
 document.addEventListener('keydown', rotate)
 
 const drawShip = (len) => {
+    const anchor = document.createElement('div');
+    anchor.classList.add('anchor');
     const fakeship = document.createElement('div');
     fakeship.classList.add('ship');
-    fakeship.setAttribute('draggable', 'true');
-    fakeship.addEventListener('dragstart', drag);
-    fakeship.addEventListener('dragend', place);
-    fakeship.addEventListener('mousedown', select);
+    // fakeship.setAttribute('draggable', 'true');
+    // fakeship.addEventListener('dragstart', drag);
+    // fakeship.addEventListener('dragend', place);
+    // fakeship.addEventListener('mousedown', select);
     fakeship.style.width = `${len * 25}px`;
-    return fakeship;
+    anchor.appendChild(fakeship)
+    // anchor.setAttribute('draggable', 'true');
+     anchor.addEventListener('dragstart', drag);
+    // anchor.addEventListener('dragend', place);
+     anchor.addEventListener('mousedown', select);
+    return anchor;
 }
 
 const drawShips = () => {

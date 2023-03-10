@@ -19,12 +19,13 @@ function styleTarget(ev) {
 }
 
 function getlocation(ev) {
+    console.log('aDrop happened!')
   ev.preventDefault();
   unstyleTarget(ev);
   const data = document.getElementsByClassName("dragItem");
   const node = data[0];
   const loc = ev.target.id.split("");
-  const col1 = Number(loc[1]);
+  const col1 = Number(loc[1]) + 2;
   const col2 = col1 + 1;
   const row1 = alpha.indexOf(loc[0]) + 2;
   const row2 = row1 + 1;
@@ -71,9 +72,12 @@ const drawBoard = (plyrVal, type) => {
       div.id = `${alpha[i]}${j}${type}`;
       // div.addEventListener('dragenter', styleTarget);
       if (type === "m") {
-        div.addEventListener("dragover", styleTarget);
-        div.addEventListener("dragleave", unstyleTarget);
+        // div.addEventListener("dragover", styleTarget);
+        // div.addEventListener("dragleave", unstyleTarget);
         div.addEventListener("drop", getlocation);
+        div.addEventListener("mouseover", styleTarget);
+        div.addEventListener("mouseleave", unstyleTarget);
+        div.addEventListener("mousemouse", getlocation);
       }
       j += 1;
     }

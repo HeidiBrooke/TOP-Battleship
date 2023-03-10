@@ -129,6 +129,7 @@ body {
 }
 
 .ship, .ship:hover{
+    position: absolute;
     display: flex;
     background-color:rgba(73, 106, 126, 60%);
     border: solid 2px rgb(47, 63, 71);
@@ -155,3 +156,11 @@ body {
 .rotated {
     transform: rotate(90deg);
 }
+
+.anchor {
+    position: relative;
+    width: 25px;
+    height: 25px;
+}
+
+
