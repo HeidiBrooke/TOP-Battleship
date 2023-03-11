@@ -105,9 +105,9 @@ body {
     border-bottom: solid 1px rgb(94, 119, 133);
 }
 
-.unitl:hover, .unitm:hover{
+/* .unitl:hover, .unitm:hover{
     background-color:rgb(117, 149, 168);
-}
+} */
 
 .miss, .miss:hover{
     background-color:rgb(49, 161, 226);
@@ -141,10 +141,12 @@ body {
     width: 25px;
     height:25px;
 }
-
+.shipHold {
+    display: flex;
+}
 .shipHolder{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
     gap: 16px;
     width: 300px;
 }

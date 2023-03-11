@@ -23,8 +23,9 @@ ships.forEach(shipEl => {
     const shipHold = document.createElement('div');
     shipHold.classList.add('shipHold')
     shipHold.appendChild(shipEl);
+    shipHold.style.width = shipEl.firstChild.style.width;
     shipHolder.appendChild(shipHold);
-     manualDrag(shipEl);
+    manualDrag(shipEl);
 })
 }
 

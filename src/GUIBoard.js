@@ -9,12 +9,14 @@ function unHover(ev) {
 }
 
 function unstyleTarget(ev) {
+  console.log('im UNtriggered')
   ev.preventDefault();
   ev.target.classList.remove("draghover");
 }
 
 function styleTarget(ev) {
   ev.preventDefault();
+  console.log('im triggered')
   ev.target.classList.add("draghover");
 }
 
@@ -72,12 +74,12 @@ const drawBoard = (plyrVal, type) => {
       div.id = `${alpha[i]}${j}${type}`;
       // div.addEventListener('dragenter', styleTarget);
       if (type === "m") {
-        // div.addEventListener("dragover", styleTarget);
-        // div.addEventListener("dragleave", unstyleTarget);
-        div.addEventListener("drop", getlocation);
-        div.addEventListener("mouseover", styleTarget);
-        div.addEventListener("mouseleave", unstyleTarget);
-        div.addEventListener("mousemouse", getlocation);
+        div.addEventListener("dragover", styleTarget);
+        div.addEventListener("dragleave", unstyleTarget);
+        // div.addEventListener("drop", getlocation);
+        // div.addEventListener("mouseover", styleTarget);
+        // div.addEventListener("mouseleave", unstyleTarget);
+        // div.addEventListener("mousemouse", getlocation);
       }
       j += 1;
     }
