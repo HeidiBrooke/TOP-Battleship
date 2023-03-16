@@ -26,6 +26,9 @@ function select(ev){
 
 function rotate(ev){
     if(ev.key === 'r'){
+        // if parent node is shiphold do, normal, other wise, get start coord
+        // build a ship in opposite direction (horizontal or vertical), basically treat as a drop if it's already of the board.
+        // if ship is valid overwrite
         const selected = document.getElementsByClassName('selected')[0].parentElement;
         let currentRotation = selected.style.transform;
         if((currentRotation === '')||(currentRotation === 'rotate(0deg)') ){
@@ -40,8 +43,6 @@ function rotate(ev){
             console.log(newRotation)
             selected.style.transform = `rotate(${newRotation}deg)`;
         }
-        
-        
     }  
 }
 
@@ -54,6 +55,7 @@ document.addEventListener('keydown', rotate)
 const drawShip = (len) => {
     const anchor = document.createElement('div');
     anchor.classList.add('anchor');
+    anchor.setAttribute('data-ship', len)
     const fakeship = document.createElement('div');
     fakeship.classList.add('ship');
     // fakeship.setAttribute('draggable', 'true');

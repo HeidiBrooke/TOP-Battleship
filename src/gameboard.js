@@ -28,6 +28,7 @@ const gameboard = (l) => {
   const getShips = () => ships;
 
   const validLength = (len) => {
+    
     let shipType = 0;
     getShips().forEach((aShip) => {
       if (aShip.length === len) {
@@ -37,21 +38,26 @@ const gameboard = (l) => {
 
     if (len === 2) {
       if (shipType > 1) {
+        console.log('2 ship already on logged')
         return false;
       }
     }
     if (len === 3) {
       if (shipType > 2) {
+        console.log('2 3 ships already on logged')
         return false;
       }
     }
     if (len === 5) {
-      if (shipType > 0) {
+      if (shipType > 1) {
+        console.log('2 3 ships already on logged')
         return false;
       }
-    }
-    if (len === 6) {
-      if (shipType > 0) {
+      }
+    
+    if (len === 4) {
+      if (shipType > 1) {
+        console.log('4 ship already on logged')
         return false;
       }
     }
@@ -67,38 +73,55 @@ const gameboard = (l) => {
   };
 
   const overlaps = (aShip, newShip) => {
+    if(aShip.length === newShip.length){
+      return false;
+    }
     let overlap = false;
-    aShip.getCoords().forEach((coord) =>
-      newShip.getCoords().forEach((coordp) => {
+    aShip.coords.forEach((coord) =>
+      newShip.coords.forEach((coordp) => {
         if (match(coordp, coord)) {
+          console.log('found overlap')
+          console.log(coordp, coord)
           overlap = true;
         }
       })
     );
+
     return overlap;
   };
 
   const updateMatrix = (aShip) => {
-    aShip.getCoords().forEach((coord) => {
+    console.log(aShip)
+    aShip.coords.forEach((coord) => {
       const index = alpha.indexOf(coord[0]);
-      rows[index][coord[1]] = getShips().indexOf(aShip);
+      rows[index][coord[1]] = ships.indexOf(aShip);
     });
   };
+
+  const removeShip = (index) => {
+    console.log('removing a ship')
+    ships.splice(index, 1);
+  }
 
   const placeShip = (len, coord, dir) => {
     let valid = false;
     if (validLength(len)) {
       valid = true;
       const newShip = ship(len, coord, dir);
-      ships.forEach((aShip) => {
-        if (overlaps(aShip, newShip)) {
-          valid = false;
-        }
-      });
-      if (valid) {
-        ships.push(newShip);
+      if(ships.length !== 0){
+        ships.forEach((aShip) => {
+          if (overlaps(aShip, newShip)) {
+            valid = false;
+          }
+        });
       }
-      updateMatrix(newShip);
+      if (valid) {
+        if(validLength(newShip.length)){
+          console.log('pushing the ship')
+          ships.push(newShip);
+        }
+      }
+      // updateMatrix(newShip);
       return valid;
     }
     return valid;
@@ -128,7 +151,18 @@ const gameboard = (l) => {
     return true;
   };
 
-  return { rows, placeShip, getShips, overlaps, match, receiveAttack, allSunk };
+  const getShipByStart = (coord) => {
+    console.log('getting ship')
+    ships.forEach(aShip => {
+      if((aShip.coords[0][0]=== coord[0]) && (aShip.coords[0][1]=== coord[1])){
+        return aShip;
+      }
+    })
+  }
+
+  return { rows, ships, placeShip, getShips, overlaps, match, receiveAttack, allSunk, removeShip, getShipByStart };
 };
 
 export default gameboard;
+
+

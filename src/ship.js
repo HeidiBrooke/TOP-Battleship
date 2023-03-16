@@ -1,6 +1,9 @@
 function validEntry(length, startPoint, direction, alpha) {
   if (direction === "r") {
     if (startPoint[1] + length - 1 > 9) {
+      console.log(startPoint[1])
+      console.log(startPoint[1] + length)
+      console.log('goes too far right')
       return false;
     }
   }

@@ -1,10 +1,11 @@
+import gameboard from "./gameboard";
 import drawBoard from "./GUIBoard";
 import drawShips from "./GUIShip";
 import manualDrag from "./manualDrag";
 import ship from "./ship";
 import style from './style.css';
 
-const drawLayout = () => {
+const drawLayout = (player) => {
 const container = document.createElement('div');
 container.id = 'container';
 document.body.appendChild(container);
@@ -25,9 +26,13 @@ ships.forEach(shipEl => {
     shipHold.appendChild(shipEl);
     shipHold.style.width = shipEl.firstChild.style.width;
     shipHolder.appendChild(shipHold);
-    manualDrag(shipEl);
+    manualDrag(shipEl, player);
 })
 }
+
+
+
+
 
 // const miss = document.getElementById('a0l');
 // miss.classList.add('miss')

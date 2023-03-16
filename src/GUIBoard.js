@@ -9,19 +9,19 @@ function unHover(ev) {
 }
 
 function unstyleTarget(ev) {
-  console.log('im UNtriggered')
+  //console.log('im UNtriggered')
   ev.preventDefault();
   ev.target.classList.remove("draghover");
 }
 
 function styleTarget(ev) {
   ev.preventDefault();
-  console.log('im triggered')
+  //console.log('im triggered')
   ev.target.classList.add("draghover");
 }
 
 function getlocation(ev) {
-    console.log('aDrop happened!')
+  console.log('aDrop happened!')
   ev.preventDefault();
   unstyleTarget(ev);
   const data = document.getElementsByClassName("dragItem");

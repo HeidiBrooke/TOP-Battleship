@@ -105,9 +105,9 @@ body {
     border-bottom: solid 1px rgb(94, 119, 133);
 }
 
-/* .unitl:hover, .unitm:hover{
+.unitl:hover{
     background-color:rgb(117, 149, 168);
-} */
+}
 
 .miss, .miss:hover{
     background-color:rgb(49, 161, 226);
@@ -153,6 +153,7 @@ body {
 
 .selected {
     box-shadow: 0 0 10px 2px #84d4ff;
+    box-shadow: 0 0 10px 2px #84ff94;
 }
 
 .rotated {
