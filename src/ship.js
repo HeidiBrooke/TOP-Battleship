@@ -1,6 +1,6 @@
 function validEntry(length, startPoint, direction, alpha) {
   if (direction === "r") {
-    if (startPoint[1] + length - 1 > 9) {
+    if (startPoint[1] + length - 1 > 10) {
       console.log(startPoint[1])
       console.log(startPoint[1] + length)
       console.log('goes too far right')
@@ -13,7 +13,7 @@ function validEntry(length, startPoint, direction, alpha) {
     }
   }
   if (direction === "d") {
-    if (alpha.indexOf(startPoint[0]) + length - 1 > 9) {
+    if (alpha.indexOf(startPoint[0]) + length - 1 > 10) {
       return false;
     }
   }
@@ -100,11 +100,32 @@ function generateHitLog(l) {
   return array;
 }
 
+const nameShip = (l) => {
+  if (l === 5){
+    return 'carrier';
+  }
+  if (l === 4){
+    return 'battleship';
+  }
+  if (l === 3){
+    return 'cruiser';
+  }
+  if (l === 2){
+    return 'destroyer';
+  }
+  return 'error'
+}
+
+
+
 const ship = (l, startPoint, direction) => {
+  const name = nameShip(l);
   const alphas = "abcdefghij";
   const alpha = alphas.split("");
-  if (!validEntry(l, startPoint, direction, alpha)) {
-    return "Ship goes out of bounds. Try again";
+  const isValid = validEntry(l, startPoint, direction, alpha);
+  console.log(isValid);
+  if (!isValid) {
+    return null;
   }
 
   const length = l;
@@ -143,6 +164,7 @@ const ship = (l, startPoint, direction) => {
   }
 
   return {
+    name,
     length,
     coords,
     hitLog,

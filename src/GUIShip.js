@@ -52,10 +52,27 @@ function dragstart (ev) {
 
 document.addEventListener('keydown', rotate)
 
+const nameShip = (l) => {
+    if (l === 5){
+      return 'carrier';
+    }
+    if (l === 4){
+      return 'battleship';
+    }
+    if (l === 3){
+      return 'cruiser';
+    }
+    if (l === 2){
+      return 'destroyer';
+    }
+    return 'error'
+  }
+
 const drawShip = (len) => {
     const anchor = document.createElement('div');
     anchor.classList.add('anchor');
-    anchor.setAttribute('data-ship', len)
+    anchor.setAttribute('data-ship', len);
+    anchor.setAttribute('data-name', nameShip(len));
     const fakeship = document.createElement('div');
     fakeship.classList.add('ship');
     // fakeship.setAttribute('draggable', 'true');

@@ -16,6 +16,7 @@ mainBoard.id = 'mainBoard';
 container.appendChild(log);
 container.appendChild(mainBoard);
 const ships = drawShips();
+
 const shipHolder = document.createElement('div');
 shipHolder.classList.add('shipHolder');
 container.appendChild(shipHolder);
@@ -28,11 +29,9 @@ ships.forEach(shipEl => {
     shipHolder.appendChild(shipHold);
     manualDrag(shipEl, player);
 })
+const sub = document.querySelectorAll('[data-name="carrier"]');
+sub[0].setAttribute('data-name', 'submarine');
 }
-
-
-
-
 
 // const miss = document.getElementById('a0l');
 // miss.classList.add('miss')

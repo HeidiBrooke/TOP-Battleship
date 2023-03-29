@@ -1,16 +1,24 @@
 const alphas = "abcdefghij";
 const alpha = alphas.split("");
 
+const printShips = (shipsArray) => {
+  shipsArray.forEach(shipEl => {
+    console.log(shipEl.name)
+  })
+}
 
 const removeStyle = (previousElem) => {
     const dragleave = new Event("dragleave");
     previousElem.dispatchEvent(dragleave);
 }
+
 const styleNode = (theElem) => {
     const dragover = new Event("dragover");
     theElem.dispatchEvent(dragover);
         }
-const playerPlace = (col1, row1, length, rot, player) => {
+
+const playerPlace = (col1, row1, length, rot, player, name) => {
+            const n = name;
             const col = col1 - 1;
             const row = alpha[row1 - 2];
             const coord = [row, col];
@@ -20,7 +28,7 @@ const playerPlace = (col1, row1, length, rot, player) => {
             if(isRotated){
                 dir = 'd'
             }
-            const valid = player.placeShip(len,coord,dir);
+            const valid = player.placeShip(len,coord,dir,n);
             return valid;
         }
 // const placementCheck = (len, rotated, row1, col1) => {
@@ -226,19 +234,16 @@ const manualDrag = (node, player) => {
         // document.dispatchEvent(dropship)
         // const notTaken = (!isTaken(theElem));
         // const valid = placementCheck(length, rotated, row1, col1) && notTaken;
-        const isValidLoc = playerPlace(col1, row1, length, rotated, player) 
+        const isValidLoc = playerPlace(col1, row1, length, rotated, player, ball.dataset.name) 
         if(isValidLoc){
             ball.style.gridArea = `${row1}/${col1}/${row2}/${col2}`;
             board.appendChild(ball);
             info = [[row1, col1], length, rotated];
             console.log(ogParent.classList[0])
             if(ogParent.classList[0] !== 'shipHold'){
-                const x = Number(ogParent.id.split('')[1])
-                const y = ogParent.id.split('')[0];
-                const theShip = player.ships.indexOf(player.getShipByStart([x,y]));
-                player.removeShip(theShip);
-                console.log(player.ships)
+                player.removeShip(ball.dataset.name);
             }
+            printShips(player.ships);
         }
       } else {
         ogParent.appendChild(ball);

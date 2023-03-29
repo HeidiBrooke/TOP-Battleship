@@ -28,7 +28,6 @@ const gameboard = (l) => {
   const getShips = () => ships;
 
   const validLength = (len) => {
-    
     let shipType = 0;
     getShips().forEach((aShip) => {
       if (aShip.length === len) {
@@ -72,7 +71,18 @@ const gameboard = (l) => {
     return false;
   };
 
+  const getShipByName = (name) => {
+    ships.forEach(shipEl => {
+      if(shipEl.name === name){
+        return shipEl;
+      }
+    })
+  }
+
   const overlaps = (aShip, newShip) => {
+    console.log('do the following overlap?')
+    console.log(aShip.name);
+    console.log(newShip.name);
     if(aShip.length === newShip.length){
       return false;
     }
@@ -98,32 +108,75 @@ const gameboard = (l) => {
     });
   };
 
-  const removeShip = (index) => {
-    console.log('removing a ship')
-    ships.splice(index, 1);
+  const removeShip = (name) => {
+    let theShip;
+    console.log(`removing a ${name} from`)
+    console.log(ships)
+    ships.forEach(shipEl => {
+      if(shipEl.name === name){
+        theShip = shipEl;
+      }
+    })
+    console.log(theShip);
+    if (theShip !== undefined){
+      const index = ships.indexOf(theShip)
+      ships.splice(index, 1);
+    }
   }
 
-  const placeShip = (len, coord, dir) => {
+  const currentShipNames = (shipsArr) => {
+    const names = [];
+    shipsArr.forEach(shipEl => {
+      names.push(shipEl.name)
+    })
+    return names;
+  }
+  const shipExists = (n) => {
+    const names = currentShipNames(ships);
+    if(names.includes(n)){
+      return true;
+    }
+    return false;
+  }
+  const printShips = (shipsArray) => {
+    shipsArray.forEach(shipEl => {
+      console.log(shipEl.name)
+    })
+  }
+
+  const placeShip = (len, coord, dir, name) => {
+    console.log('placing ship:');
+    console.log(name)
+    console.log('current ships are:')
+    console.log(printShips(ships))
+
     let valid = false;
-    if (validLength(len)) {
-      valid = true;
+    //check if ship already exists, if so, remove old ship
+    if (shipExists(name)) {
+      console.log('removing ship');
+      console.log(name);
+      removeShip(name);
+    }
+    //try making a ship, if it makes one, check if it overlaps, if it does, don't push it. 
       const newShip = ship(len, coord, dir);
-      if(ships.length !== 0){
-        ships.forEach((aShip) => {
-          if (overlaps(aShip, newShip)) {
-            valid = false;
-          }
-        });
-      }
-      if (valid) {
-        if(validLength(newShip.length)){
-          console.log('pushing the ship')
-          ships.push(newShip);
+      if(newShip !== null){
+        valid = true;
+        if(ships.length !== 0){
+          ships.forEach((aShip) => {
+            if (overlaps(aShip, newShip)) {
+              valid = false;  
+            }
+          });
+        }
+        if(valid === true){
+          ships.push(newShip); 
+          console.log('ship pushed was:')
+          console.log(newShip.name)
         }
       }
+
       // updateMatrix(newShip);
-      return valid;
-    }
+    
     return valid;
   };
 
@@ -160,7 +213,7 @@ const gameboard = (l) => {
     })
   }
 
-  return { rows, ships, placeShip, getShips, overlaps, match, receiveAttack, allSunk, removeShip, getShipByStart };
+  return { rows, ships, placeShip, getShips, overlaps, match, receiveAttack, allSunk, removeShip, getShipByStart, getShipByName };
 };
 
 export default gameboard;
