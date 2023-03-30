@@ -99,6 +99,7 @@ const gameboard = (l, pval) => {
           console.log('found overlap')
           console.log(coordp, coord)
           overlap = true;
+          
         }
       })
     );
@@ -161,7 +162,7 @@ const gameboard = (l, pval) => {
       removeShip(name);
     }
     //try making a ship, if it makes one, check if it overlaps, if it does, don't push it. 
-      const newShip = ship(len, coord, dir);
+      const newShip = ship(len, coord, dir, name);
       if(newShip !== null){
         valid = true;
         if(ships.length !== 0){

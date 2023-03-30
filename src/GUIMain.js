@@ -54,26 +54,14 @@ const playerPlace = (col1, row1, length, rot, aPlayer, name) => {
 
 function rotate(ev){
     if(ev.key === 'r'){
+        let valid;
         console.log('rotating');
         // if parent node is shiphold do, normal, other wise, get start coord
         // build a ship in opposite direction (horizontal or vertical), basically treat as a drop if it's already of the board.
         // if ship is valid overwrite
         const selected = document.getElementsByClassName('selected')[0].parentElement;
         let currentRotation = selected.style.transform;
-        if((currentRotation === '')||(currentRotation === 'rotate(0deg)') ){
-            currentRotation = 0;
-            selected.style.transform = `rotate(90deg)`;
-            selected.setAttribute('data-rotated', 'true');
-        }
-        else{
-            currentRotation = currentRotation.split('');
-            let newRotation = currentRotation[7] + currentRotation[8];
-            newRotation = Number(newRotation);
-            newRotation -= 90;
-            console.log(newRotation)
-            selected.style.transform = `rotate(${newRotation}deg)`;
-            selected.setAttribute('data-rotated', 'true');
-        }
+        
         console.log(selected);
         if(selected.parentElement.getAttribute('class') === 'board'){
             const isRotated = selected.dataset.rotated;
@@ -83,9 +71,29 @@ function rotate(ev){
                 console.log(col1);
                 const row1 = Number(gArea[0]);
                 console.log(row1);
-                
-                playerPlace(col1, row1, length, isRotated, player, selected.dataset.name) 
-
+                valid = playerPlace(col1, row1, length, isRotated, player, selected.dataset.name) 
+        }
+        if(valid) {
+            if((currentRotation === '')||(currentRotation === 'rotate(0deg)') ){
+                currentRotation = 0;
+                selected.style.transform = `rotate(90deg)`;
+                selected.setAttribute('data-rotated', 'true');
+            }
+            else{
+                currentRotation = currentRotation.split('');
+                let newRotation = currentRotation[7] + currentRotation[8];
+                newRotation = Number(newRotation);
+                newRotation -= 90;
+                console.log(newRotation)
+                selected.style.transform = `rotate(${newRotation}deg)`;
+                selected.setAttribute('data-rotated', 'false');
+            }
+        }
+        else{
+            console.log(selected.firstChild)
+            selected.firstChild.classList.add('horizontal-shake');
+            console.log('applying shake')
+            setTimeout(() => {selected.firstChild.classList.remove('horizontal-shake')}, '500')
         }
     }  
 }

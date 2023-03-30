@@ -118,8 +118,8 @@ const nameShip = (l) => {
 
 
 
-const ship = (l, startPoint, direction) => {
-  const name = nameShip(l);
+const ship = (l, startPoint, direction, theName) => {
+  const name = theName;
   const alphas = "abcdefghij";
   const alpha = alphas.split("");
   const isValid = validEntry(l, startPoint, direction, alpha);

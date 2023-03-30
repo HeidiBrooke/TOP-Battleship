@@ -24,10 +24,16 @@ const playerPlace = (col1, row1, length, rot, player, name) => {
             const coord = [row, col];
             const len = length;
             const isRotated = rot;
-            let dir = 'r';
-            if(isRotated){
-                dir = 'd'
+            console.log(isRotated);
+            let dir;
+            if(isRotated === 'true'){
+              
+                dir = 'd';
             }
+            else{
+              dir = 'r';
+            }
+            console.log(dir);
             const valid = player.placeShip(len,coord,dir,n);
             return valid;
         }
@@ -234,15 +240,16 @@ const manualDrag = (node, player) => {
         // document.dispatchEvent(dropship)
         // const notTaken = (!isTaken(theElem));
         // const valid = placementCheck(length, rotated, row1, col1) && notTaken;
-        const isValidLoc = playerPlace(col1, row1, length, rotated, player, ball.dataset.name) 
+        const amRotated = ball.dataset.rotated;
+        const isValidLoc = playerPlace(col1, row1, length, amRotated, player, ball.dataset.name) 
         if(isValidLoc){
             ball.style.gridArea = `${row1}/${col1}/${row2}/${col2}`;
             board.appendChild(ball);
             info = [[row1, col1], length, rotated];
-            if(ogParent.classList[0] !== 'shipHold'){
-                player.removeShip(ball.dataset.name);
-            }
-            printShips(player.ships);
+            // if(ogParent.classList[0] !== 'shipHold'){
+            //     player.removeShip(ball.dataset.name);
+            // }
+            // printShips(player.ships);
         }
       } else {
         ogParent.appendChild(ball);
