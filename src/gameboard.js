@@ -89,6 +89,8 @@ const gameboard = (l, pval) => {
     console.log('do the following overlap?')
     console.log(aShip.name);
     console.log(newShip.name);
+    console.log('new ship is LOCATED at:')
+    console.log(newShip.coords)
     if(aShip.length === newShip.length){
       return false;
     }

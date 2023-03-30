@@ -244,7 +244,7 @@ const manualDrag = (node, player) => {
         // const valid = placementCheck(length, rotated, row1, col1) && notTaken;
         const amRotated = ball.dataset.rotated;
         const isValidLoc = playerPlace(col1, row1, length, amRotated, player, ball.dataset.name) 
-        console.log('I WAS VALID')
+        console.log('WAs I VALID?')
         console.log(isValidLoc)
         if(isValidLoc){
           console.log(isValidLoc)

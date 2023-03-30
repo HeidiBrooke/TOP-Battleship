@@ -1,4 +1,5 @@
 function validEntry(length, startPoint, direction, alpha) {
+  console.log(`start point is ${startPoint}`)
   if (direction === "r") {
     if (startPoint[1] + length - 1 > 10) {
       console.log(startPoint[1])
@@ -13,7 +14,16 @@ function validEntry(length, startPoint, direction, alpha) {
     }
   }
   if (direction === "d") {
-    if (alpha.indexOf(startPoint[0]) + length - 1 > 10) {
+    console.log(alpha.indexOf
+      (startPoint[0]))
+      console.log(alpha.indexOf
+        (startPoint[0])+length )
+    if (alpha.indexOf(startPoint[0]) + length  > 10) {
+      console.log(alpha.indexOf
+        (startPoint[0]))
+        console.log(alpha.indexOf
+          (startPoint[0])+length )
+      console.log('goes too far down')
       return false;
     }
   }
@@ -27,6 +37,7 @@ function validEntry(length, startPoint, direction, alpha) {
 }
 
 function right(length, startPoint) {
+  console.log('RIGHT')
   const array = [];
   const x = startPoint[0];
   let y = startPoint[1];
@@ -62,6 +73,7 @@ function up(length, startPoint, alpha) {
 }
 
 function down(length, startPoint, alpha) {
+  console.log('DOwN')
   const array = [];
   let index = alpha.indexOf(startPoint[0]);
   for (let i = 0; i < length; i += 1) {
