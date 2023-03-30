@@ -161,6 +161,8 @@ const manualDrag = (node, player) => {
     ball.classList.add("dragItem");
     // (1) start the process
     const ogParent = ball.parentElement;
+    console.log('OG parent is:')
+    console.log(ogParent)
     let rotated = node.style.transform.split('');
     rotated = isRotated(rotated);
     ball.setAttribute('data-rotated', rotated)
@@ -242,7 +244,10 @@ const manualDrag = (node, player) => {
         // const valid = placementCheck(length, rotated, row1, col1) && notTaken;
         const amRotated = ball.dataset.rotated;
         const isValidLoc = playerPlace(col1, row1, length, amRotated, player, ball.dataset.name) 
+        console.log('I WAS VALID')
+        console.log(isValidLoc)
         if(isValidLoc){
+          console.log(isValidLoc)
             ball.style.gridArea = `${row1}/${col1}/${row2}/${col2}`;
             board.appendChild(ball);
             info = [[row1, col1], length, rotated];
@@ -251,9 +256,11 @@ const manualDrag = (node, player) => {
             // }
             // printShips(player.ships);
         }
-      } else {
-        ogParent.appendChild(ball);
-      }
+        else {
+          console.log(`the og parent is now: ${ogParent}`)
+          ogParent.appendChild(ball);
+        }
+      } 
 
       document.removeEventListener("mousemove", onMouseMove);
       const styled = document.getElementsByClassName('draghover');
