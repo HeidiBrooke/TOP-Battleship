@@ -20,7 +20,8 @@ function generateRows(l) {
   return rows;
 }
 
-const gameboard = (l) => {
+const gameboard = (l, pval) => {
+  const pNum = pval;
   const alphas = "abcdefghij";
   const alpha = alphas.split("");
   const rows = generateRows(l);
@@ -78,7 +79,12 @@ const gameboard = (l) => {
       }
     })
   }
-
+  const printShips = (shipsArray) => {
+    shipsArray.forEach(shipEl => {
+      console.log(shipEl.name)
+      console.log(shipEl.coords)
+    })
+  }
   const overlaps = (aShip, newShip) => {
     console.log('do the following overlap?')
     console.log(aShip.name);
@@ -122,6 +128,7 @@ const gameboard = (l) => {
       const index = ships.indexOf(theShip)
       ships.splice(index, 1);
     }
+    printShips(ships);
   }
 
   const currentShipNames = (shipsArr) => {
@@ -138,11 +145,7 @@ const gameboard = (l) => {
     }
     return false;
   }
-  const printShips = (shipsArray) => {
-    shipsArray.forEach(shipEl => {
-      console.log(shipEl.name)
-    })
-  }
+  
 
   const placeShip = (len, coord, dir, name) => {
     console.log('placing ship:');
@@ -172,6 +175,7 @@ const gameboard = (l) => {
           ships.push(newShip); 
           console.log('ship pushed was:')
           console.log(newShip.name)
+          printShips(ships);
         }
       }
 
@@ -213,7 +217,7 @@ const gameboard = (l) => {
     })
   }
 
-  return { rows, ships, placeShip, getShips, overlaps, match, receiveAttack, allSunk, removeShip, getShipByStart, getShipByName };
+  return { rows, ships, placeShip, getShips, overlaps, match, receiveAttack, allSunk, removeShip, getShipByStart, getShipByName, pNum };
 };
 
 export default gameboard;

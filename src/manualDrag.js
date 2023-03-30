@@ -239,7 +239,6 @@ const manualDrag = (node, player) => {
             ball.style.gridArea = `${row1}/${col1}/${row2}/${col2}`;
             board.appendChild(ball);
             info = [[row1, col1], length, rotated];
-            console.log(ogParent.classList[0])
             if(ogParent.classList[0] !== 'shipHold'){
                 player.removeShip(ball.dataset.name);
             }

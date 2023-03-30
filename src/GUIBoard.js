@@ -38,6 +38,10 @@ function getlocation(ev) {
 const drawBoard = (plyrVal, type) => {
   const grid = document.createElement("div");
   grid.classList.add("board");
+  if(plyrVal !== null){
+    grid.setAttribute('data-player', plyrVal.pNum);
+  }
+  
   const topLabel = document.createElement("div");
   grid.appendChild(topLabel);
   topLabel.classList.add("topLabel");
