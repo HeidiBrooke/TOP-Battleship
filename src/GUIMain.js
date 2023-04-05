@@ -2,6 +2,7 @@ import gameboard from "./gameboard";
 import drawBoard from "./GUIBoard";
 import drawShips from "./GUIShip";
 import manualDrag from "./manualDrag";
+import renderBoards from './GUIRender';
 import ship from "./ship";
 import style from './style.css';
 
@@ -9,7 +10,7 @@ const alphas = "abcdefghij";
 const alpha = alphas.split("");
 
 
-const drawLayout = (player) => {
+const drawLayout = (player, player2) => {
 const container = document.createElement('div');
 container.id = 'container';
 document.body.appendChild(container);
@@ -31,7 +32,10 @@ const lockShipsDown = () => {
     const shipNodes = document.getElementsByClassName('anchor');
     Array.from(shipNodes).forEach(anchor => {
         anchor.firstChild.classList.remove('selected');
+        anchor.firstChild.classList.add('hidden');
         anchor.replaceWith(anchor.cloneNode(true));
+        anchor.classList.add('hidden');
+        
     })
     const lockButton = document.getElementById('lockButton');
     lockButton.classList.remove('lock');
@@ -39,7 +43,9 @@ const lockShipsDown = () => {
     const aShipHolder = document.getElementsByClassName('shipHolder')[0];
     const aContainer = document.getElementById('container');
     aContainer.removeChild(aShipHolder);
+    renderBoards(player, player2)
 }
+
 const lockShips = document.createElement('div');
 lockShips.classList.add('button');
 lockShips.classList.add('lock');
@@ -142,8 +148,6 @@ function rotate(ev){
     }  
 }
 document.addEventListener('keydown', rotate)
-
-
 }
 
 // const miss = document.getElementById('a0l');

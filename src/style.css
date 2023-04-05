@@ -109,6 +109,10 @@ body {
     background-color:rgb(117, 149, 168);
 }
 
+.empty {
+    background-color: #84ff94;
+}
+
 .miss, .miss:hover{
     background-color:rgb(49, 161, 226);
     border-right: solid 1px rgb(94, 119, 133);
@@ -180,6 +184,10 @@ body {
 
 .lock:hover {
     transform: scale(105%);
+}
+
+.hidden{
+    display: none;
 }
 
 .horizontal-shake {

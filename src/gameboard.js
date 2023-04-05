@@ -113,6 +113,7 @@ const gameboard = (l, pval) => {
     console.log(aShip)
     aShip.coords.forEach((coord) => {
       const index = alpha.indexOf(coord[0]);
+      console.log(coord[0])
       rows[index][coord[1]] = ships.indexOf(aShip);
     });
   };
@@ -182,7 +183,7 @@ const gameboard = (l, pval) => {
         }
       }
 
-      // updateMatrix(newShip);
+      updateMatrix(newShip);
     
     return valid;
   };
