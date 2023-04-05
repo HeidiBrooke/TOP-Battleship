@@ -134,6 +134,8 @@ const drawShip = (len) => {
     return anchor;
 }
 
+
+
 const drawShips = () => {
     const shipdivs = [];
     shipdivs.push(drawShip(5));

@@ -8,6 +8,7 @@ import style from './style.css';
 const alphas = "abcdefghij";
 const alpha = alphas.split("");
 
+
 const drawLayout = (player) => {
 const container = document.createElement('div');
 container.id = 'container';
@@ -25,10 +26,28 @@ const shipHolder = document.createElement('div');
 shipHolder.classList.add('shipHolder');
 container.appendChild(shipHolder);
 
+const lockShipsDown = () => {
+    console.log('locking ships')
+    const shipNodes = document.getElementsByClassName('anchor');
+    Array.from(shipNodes).forEach(anchor => {
+        anchor.firstChild.classList.remove('selected');
+        anchor.replaceWith(anchor.cloneNode(true));
+    })
+    const lockButton = document.getElementById('lockButton');
+    lockButton.classList.remove('lock');
+    lockButton.replaceWith(lockButton.cloneNode(true));
+    const aShipHolder = document.getElementsByClassName('shipHolder')[0];
+    const aContainer = document.getElementById('container');
+    aContainer.removeChild(aShipHolder);
+}
 const lockShips = document.createElement('div');
 lockShips.classList.add('button');
+lockShips.classList.add('lock');
 container.appendChild(lockShips);
 lockShips.textContent = 'LOCK SHIPS';
+lockShips.setAttribute('id', 'lockButton');
+lockShips.addEventListener('click', lockShipsDown)
+
 
 ships.forEach(shipEl => {
     const shipHold = document.createElement('div');

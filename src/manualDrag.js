@@ -157,7 +157,7 @@ const manualDrag = (node, player) => {
   
 //   let index = Array(ball.parentElement.children).indexOf(ball);
 
-  ball.onmousedown = function (event) {
+   function dragItem (event) {
     ball.classList.add("dragItem");
     // (1) start the process
     const ogParent = ball.parentElement;
@@ -260,7 +260,12 @@ const manualDrag = (node, player) => {
           console.log(`the og parent is now: ${ogParent}`)
           ogParent.appendChild(ball);
         }
+        
       } 
+      else {
+        console.log(`the og parent is now: ${ogParent}`)
+        ogParent.appendChild(ball);
+      }
 
       document.removeEventListener("mousemove", onMouseMove);
       const styled = document.getElementsByClassName('draghover');
@@ -270,6 +275,7 @@ const manualDrag = (node, player) => {
       return info;
     };
   };
+  ball.addEventListener('mousedown', dragItem)
 };
 
 export default manualDrag;
