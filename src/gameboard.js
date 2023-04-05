@@ -189,19 +189,22 @@ const gameboard = (l, pval) => {
   };
 
   const receiveAttack = (coord) => {
+    console.log('received attack' + coord[0] + coord[1])
     const index = alpha.indexOf(coord[0]);
     const currentVal = rows[index][coord[1]];
+    console.log(currentVal)
     if (typeof currentVal === "number") {
       rows[index][coord[1]] = "H";
       ships[currentVal].hit(coord);
-      return "I worked";
+      return true;
     }
     if (currentVal === "E") {
+      console.log('current val was e')
       rows[index][coord[1]] = "M";
-    } else {
-      return "already fired here. Try again.";
+      return true;
+    } 
+      return false;
     }
-  };
 
   const allSunk = () => {
     ships.forEach((aShip) => {

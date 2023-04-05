@@ -113,6 +113,11 @@ body {
     background-color: #84ff94;
 }
 
+#messageBoard {
+    width: 300px;
+    font-size: 18px;
+}
+
 .miss, .miss:hover{
     background-color:rgb(49, 161, 226);
     border-right: solid 1px rgb(94, 119, 133);
