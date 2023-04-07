@@ -33,6 +33,9 @@ body {
     gap: 20px;
 }
 
+#turnBoard {
+    display: none;
+}
 .board {
     display: grid;
     grid-template-columns: repeat(11, 25px);

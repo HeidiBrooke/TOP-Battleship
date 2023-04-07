@@ -19,7 +19,7 @@ const styleNode = (theElem) => {
 
 const playerPlace = (col1, row1, length, rot, player, name) => {
             const n = name;
-            const col = col1 - 1;
+            const col = col1 - 2;
             const row = alpha[row1 - 2];
             const coord = [row, col];
             const len = length;

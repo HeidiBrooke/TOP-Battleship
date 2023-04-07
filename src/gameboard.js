@@ -114,10 +114,10 @@ const gameboard = (l, pval) => {
     aShip.coords.forEach((coord) => {
       const index = alpha.indexOf(coord[0]);
       // console.log(coord[0])
-      rows[index][coord[1]-1] = ships.indexOf(aShip);
+      rows[index][coord[1]] = ships.indexOf(aShip);
     });
   }
-  const updateMatrix = (aShip) => {
+  const updateMatrix = () => {
     ships.forEach(shipEl => {
       placeShipInMatrix(shipEl)
     })
@@ -157,10 +157,10 @@ const gameboard = (l, pval) => {
   
 
   const placeShip = (len, coord, dir, name) => {
-    // console.log('placing ship:');
-    // console.log(name)
-    // console.log('current ships are:')
-    // console.log(printShips(ships))
+    console.log('placing ship:');
+    console.log(name)
+    console.log('current ships are:')
+    console.log(printShips(ships))
 
     let valid = false;
     //check if ship already exists, if so, remove old ship
@@ -182,8 +182,8 @@ const gameboard = (l, pval) => {
         }
         if(valid === true){
           ships.push(newShip); 
-          // console.log('ship pushed was:')
-          // console.log(newShip.name)
+          console.log('ship pushed was:')
+          console.log(newShip.name)
           printShips(ships);
         }
       }
@@ -215,8 +215,8 @@ const gameboard = (l, pval) => {
     let sunk = true;
     // console.log(`sunk is ${sunk}`)
     ships.forEach(aShip => {
-      // console.log(`${aShip.name} is sunk? ${aShip.sunk}`)
-      // console.log(`${aShip.name} hitlog is: ${aShip.hitLog}`)
+      console.log(`${aShip.name} is sunk? ${aShip.sunk}`)
+      console.log(`${aShip.name} hitlog is: ${aShip.hitLog}`)
       if (!aShip.isSunk()) {
         sunk = false;
       }
