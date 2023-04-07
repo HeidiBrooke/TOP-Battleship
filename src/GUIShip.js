@@ -17,6 +17,15 @@ function drag(ev) {
       }, 1);
   }
 
+  function touchdrag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+    ev.target.classList.add('dragItem');
+    const node = ev.target;
+    setTimeout (() => {
+        node.style.visibility = "hidden";
+      }, 1);
+  }
+
 
 function place(ev){
     const node = ev.target;
@@ -129,10 +138,11 @@ const drawShip = (len) => {
     anchor.appendChild(fakeship)
     // anchor.setAttribute('draggable', 'true');
      anchor.addEventListener('dragstart', drag);
-     anchor.addEventListener('touchstart', drag);
+     anchor.addEventListener('touchstart', touchdrag);
+     anchor.addEventListener('touchmove', touchdrag);
     // anchor.addEventListener('dragend', place);
      anchor.addEventListener('mousedown', select);
-     anchor.addEventListener('touch', select)
+     anchor.addEventListener('touchmove', select)
     return anchor;
 }
 

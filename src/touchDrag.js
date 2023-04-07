@@ -162,6 +162,7 @@ const manualDrag = (node, player) => {
 //   let index = Array(ball.parentElement.children).indexOf(ball);
 
    function dragItem (event) {
+    const touchLocation = event.targetTouches[0];
     ball.classList.add("dragItem");
     // (1) start the process
     const ogParent = ball.parentElement;
@@ -185,8 +186,8 @@ const manualDrag = (node, player) => {
     let previousElem;
     // centers the ball at (pageX, pageY) coordinates
     function moveAt(pageX, pageY) {
-      ball.style.left = `${pageX - ball.offsetWidth / 2}px`;
-      ball.style.top = `${pageY - ball.offsetHeight / 2}px`;
+      ball.style.left = `${touchLocation.pageX}px`;
+      ball.style.top = `${touchLocation.pageY}px`;
       const dropElemList = document.elementsFromPoint(pageX, pageY);
 
       dropElemList.forEach((elem) => {

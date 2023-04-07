@@ -2,6 +2,7 @@ import gameboard from "./gameboard";
 import drawBoard from "./GUIBoard";
 import drawShips from "./GUIShip";
 import manualDrag from "./manualDrag";
+import touchDrag from './touchDrag';
 import renderBoards from './GUIRender';
 import ship from "./ship";
 import style from './style.css';
@@ -73,6 +74,7 @@ ships.forEach(shipEl => {
     shipHold.style.width = shipEl.firstChild.style.width;
     shipHolder.appendChild(shipHold);
     manualDrag(shipEl, player);
+    touchDrag(shipEl, player)
 })
 const sub = document.querySelectorAll('[data-name="cruiser"]');
 sub[0].setAttribute('data-name', 'submarine');
