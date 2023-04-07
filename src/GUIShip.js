@@ -129,8 +129,10 @@ const drawShip = (len) => {
     anchor.appendChild(fakeship)
     // anchor.setAttribute('draggable', 'true');
      anchor.addEventListener('dragstart', drag);
+     anchor.addEventListener('touchstart', drag);
     // anchor.addEventListener('dragend', place);
      anchor.addEventListener('mousedown', select);
+     anchor.addEventListener('touch', select)
     return anchor;
 }
 

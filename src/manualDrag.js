@@ -10,11 +10,15 @@ const printShips = (shipsArray) => {
 const removeStyle = (previousElem) => {
     const dragleave = new Event("dragleave");
     previousElem.dispatchEvent(dragleave);
+    const touchleave = new Event("touchleave");
+    previousElem.dispatchEvent(touchleave);
 }
 
 const styleNode = (theElem) => {
     const dragover = new Event("dragover");
     theElem.dispatchEvent(dragover);
+    const touchover = new Event("touchmove");
+    theElem.dispatchEvent(touchover);
         }
 
 const playerPlace = (col1, row1, length, rot, player, name) => {
@@ -220,6 +224,7 @@ const manualDrag = (node, player) => {
 
     // (3) move the ball on mousemove
     document.addEventListener("mousemove", onMouseMove);
+    document.addEventListener("touchmove", onMouseMove);
     let info;
     // (4) drop the ball, remove unneeded handlers
     ball.onmouseup = function () {
@@ -268,6 +273,7 @@ const manualDrag = (node, player) => {
       }
 
       document.removeEventListener("mousemove", onMouseMove);
+      document.removeEventListener("touchmove", onMouseMove);
       const styled = document.getElementsByClassName('draghover');
       Array.from(styled).forEach(element => {
         removeStyle(element)})
@@ -276,6 +282,7 @@ const manualDrag = (node, player) => {
     };
   };
   ball.addEventListener('mousedown', dragItem)
+  ball.addEventListener('touchstart', dragItem)
 };
 
 export default manualDrag;

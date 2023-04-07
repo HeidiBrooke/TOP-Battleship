@@ -83,6 +83,8 @@ const drawBoard = (plyrVal, type) => {
       if (type === "m") {
         div.addEventListener("dragover", styleTarget);
         div.addEventListener("dragleave", unstyleTarget);
+        div.addEventListener("touchmove", styleTarget);
+        div.addEventListener("touchleave", unstyleTarget);
         // div.addEventListener("drop", getlocation);
         // div.addEventListener("mouseover", styleTarget);
         // div.addEventListener("mouseleave", unstyleTarget);
