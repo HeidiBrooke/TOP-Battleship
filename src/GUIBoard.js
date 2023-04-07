@@ -51,6 +51,9 @@ const drawBoard = (plyrVal, type) => {
   const innerBoard = document.createElement("div");
   innerBoard.classList.add("innerBoard");
   grid.appendChild(innerBoard);
+  const bottomLabel = document.createElement("div");
+  bottomLabel.classList.add("bottomLabel");
+  grid.appendChild(bottomLabel);
 
   for (let i = 0; i < 10; ) {
     const div = document.createElement("div");

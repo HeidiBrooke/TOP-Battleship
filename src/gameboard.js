@@ -156,18 +156,20 @@ const gameboard = (l, pval) => {
   }
   
 
-  const placeShip = (len, coord, dir, name) => {
+  const placeShip = (len, coord, dir, name, comp) => {
     console.log('placing ship:');
     console.log(name)
     console.log('current ships are:')
     console.log(printShips(ships))
-
+    let goodLength = validLength(len);
     let valid = false;
     //check if ship already exists, if so, remove old ship
-    if (shipExists(name)) {
-      // console.log('removing ship');
-      // console.log(name);
-      removeShip(name);
+    if(!comp){
+      if (shipExists(name)) {
+        // console.log('removing ship');
+        // console.log(name);
+        removeShip(name);
+      }
     }
     //try making a ship, if it makes one, check if it overlaps, if it does, don't push it. 
       const newShip = ship(len, coord, dir, name);

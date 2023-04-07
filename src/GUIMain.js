@@ -11,9 +11,8 @@ const alpha = alphas.split("");
 
 
 const drawLayout = (player, player2) => {
-const container = document.createElement('div');
-container.id = 'container';
-document.body.appendChild(container);
+const container = document.getElementById('container')
+const messageBoard = document.getElementById('messageBoard');
 const log = drawBoard(null, 'l');
 log.id = 'log';
 // const num = player.playerNum;
@@ -22,13 +21,23 @@ mainBoard.id = 'mainBoard';
 container.appendChild(log);
 container.appendChild(mainBoard);
 const ships = drawShips();
-
+const outerHold = document.createElement('div');
+outerHold.classList.add('outerHold')
+container.appendChild(outerHold)
 const shipHolder = document.createElement('div');
 shipHolder.classList.add('shipHolder');
-container.appendChild(shipHolder);
+outerHold.appendChild(shipHolder);
+log.children[3].textContent = 'Enemy Board';
+mainBoard.children[3].textContent = 'My Board';
+
+// document.body.appendChild(shipHolder);
 
 const lockShipsDown = () => {
-    // console.log('locking ships')
+    console.log('locking ships')
+    if(player.ships.length !== 5){
+        messageBoard.textContent = 'Please place all of you ships on the board!'
+        return
+    }
     const shipNodes = document.getElementsByClassName('anchor');
     Array.from(shipNodes).forEach(anchor => {
         anchor.firstChild.classList.remove('selected');
@@ -41,18 +50,17 @@ const lockShipsDown = () => {
     lockButton.classList.remove('lock');
     lockButton.replaceWith(lockButton.cloneNode(true));
     const aShipHolder = document.getElementsByClassName('shipHolder')[0];
-    const aContainer = document.getElementById('container');
-    aContainer.removeChild(aShipHolder);
+    aShipHolder.remove();
     player.updateMatrix();
     player2.updateMatrix();
     renderBoards(player, player2);
-
 }
 
 const lockShips = document.createElement('div');
 lockShips.classList.add('button');
 lockShips.classList.add('lock');
-container.appendChild(lockShips);
+outerHold.appendChild(lockShips);
+// document.body.appendChild(lockShips);
 lockShips.textContent = 'LOCK SHIPS';
 lockShips.setAttribute('id', 'lockButton');
 lockShips.addEventListener('click', lockShipsDown)

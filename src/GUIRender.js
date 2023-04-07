@@ -60,7 +60,8 @@ const getOtherPlayer = (player, player2, turn) => {
 
 const checkForWin = (playerUp, playerNext) => {
     if(playerNext.allSunk()){
-        document.getElementById('messageBoard').textContent = `All of ${playerNext.pNum}'s ships are sunk. ${playerUp.pNum} wins!`;
+        // document.getElementById('messageBoard').textContent = `All of ${playerNext.pNum}'s ships are sunk. ${playerUp.pNum} wins!`;
+        document.getElementById('messageBoard').textContent = `All of computer's ships are sunk. You win!`;
         const gridUnits = document.getElementsByClassName('unitl');
         const moregridUnits = document.getElementsByClassName('unitm');
         Array.from(gridUnits).forEach(unit => {
@@ -69,6 +70,8 @@ const checkForWin = (playerUp, playerNext) => {
         Array.from(moregridUnits).forEach(unit => {
             unit.replaceWith(unit.cloneNode(true));
         })
+        const playAgain = document.getElementById('playAgain');
+        playAgain.style.display = 'block';
         return true;
     }
     return false;
@@ -99,7 +102,7 @@ Array.from(lunits).forEach(unit => {
 }
 
 const render = (player, player2) => {    
-document.getElementById('messageBoard').textContent = ''
+    document.getElementById('messageBoard').textContent = 'Your turn!';
 const playerNum = Number(document.getElementById('turnBoard').textContent);
 const oldContainer = document.getElementById('container');
 oldContainer.remove();
@@ -113,13 +116,15 @@ const mainBoard = drawBoard(player, 'm');
 mainBoard.id = 'mainBoard';
 container.appendChild(log);
 container.appendChild(mainBoard);
+log.children[3].textContent = 'Enemy Board';
+mainBoard.children[3].textContent = 'My Board';
 const units = document.getElementsByClassName('unitm');
 Array.from(units).forEach(unit => {
     addStyles(unit, player);
 })
 const lunits = document.getElementsByClassName('unitl');
     Array.from(lunits).forEach(unit => {
-        addStyles(unit, player2);
+        addStyles2(unit, player2);
     })
     const attack = (e) => {
         // console.log('attacking')
@@ -154,7 +159,7 @@ const lunits = document.getElementsByClassName('unitl');
     }
 
 const attackComp = () => {
-    
+        
         // console.log('Computer attacking')
         const playerNum = Number(document.getElementById('turnBoard').textContent);
         const playerUp = getPlayer(player, player2, playerNum);
@@ -192,7 +197,7 @@ const disableUserAttack = () => {
 }
 
 if(playerNum === 2){
-    document.getElementById('messageBoard').textContent = 'computer attacking';
+    document.getElementById('messageBoard').textContent = 'Computer attacking!';
     disableUserAttack();
     setTimeout(() => {
         attackComp() 

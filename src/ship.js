@@ -1,7 +1,7 @@
 function validEntry(length, startPoint, direction, alpha) {
   // console.log(`start point is ${startPoint}`)
   if (direction === "r") {
-    if (startPoint[1] + length - 1 > 10) {
+    if (startPoint[1] + length > 10) {
       // console.log(startPoint[1])
       // console.log(startPoint[1] + length)
       // console.log('goes too far right')
@@ -188,6 +188,7 @@ const ship = (l, startPoint, direction, theName) => {
     getHitlog,
     sunk,
     sink,
+    nameShip
   };
 };
 
