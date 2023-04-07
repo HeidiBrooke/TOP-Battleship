@@ -1,10 +1,10 @@
 function validEntry(length, startPoint, direction, alpha) {
-  console.log(`start point is ${startPoint}`)
+  // console.log(`start point is ${startPoint}`)
   if (direction === "r") {
     if (startPoint[1] + length - 1 > 10) {
-      console.log(startPoint[1])
-      console.log(startPoint[1] + length)
-      console.log('goes too far right')
+      // console.log(startPoint[1])
+      // console.log(startPoint[1] + length)
+      // console.log('goes too far right')
       return false;
     }
   }
@@ -37,7 +37,7 @@ function validEntry(length, startPoint, direction, alpha) {
 }
 
 function right(length, startPoint) {
-  console.log('RIGHT')
+  // console.log('RIGHT')
   const array = [];
   const x = startPoint[0];
   let y = startPoint[1];
@@ -135,7 +135,7 @@ const ship = (l, startPoint, direction, theName) => {
   const alphas = "abcdefghij";
   const alpha = alphas.split("");
   const isValid = validEntry(l, startPoint, direction, alpha);
-  console.log(isValid);
+  // console.log(isValid);
   if (!isValid) {
     return null;
   }
@@ -144,7 +144,9 @@ const ship = (l, startPoint, direction, theName) => {
   const coords = generateCoordinates(l, startPoint, direction, alpha);
   const hitLog = generateHitLog(l);
   const isSunk = () => {
+    // console.log(`hitlog is ${hitLog}`);
     if (!hitLog.includes(0)) {
+      // console.log('hitlog did not inclue a zero')
       return true;
     }
     return false;

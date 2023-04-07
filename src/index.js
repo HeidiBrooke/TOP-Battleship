@@ -7,7 +7,8 @@ const alpha = alphas.split("");
 
 const printShips = (shipsArray) => {
     shipsArray.forEach(shipEl => {
-      console.log(shipEl.name)
+    //   console.log(shipEl.name)
+    //   console.log(shipEl.sunk)
     })
   }
 

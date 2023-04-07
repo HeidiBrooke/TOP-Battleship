@@ -28,7 +28,7 @@ shipHolder.classList.add('shipHolder');
 container.appendChild(shipHolder);
 
 const lockShipsDown = () => {
-    console.log('locking ships')
+    // console.log('locking ships')
     const shipNodes = document.getElementsByClassName('anchor');
     Array.from(shipNodes).forEach(anchor => {
         anchor.firstChild.classList.remove('selected');
@@ -43,7 +43,10 @@ const lockShipsDown = () => {
     const aShipHolder = document.getElementsByClassName('shipHolder')[0];
     const aContainer = document.getElementById('container');
     aContainer.removeChild(aShipHolder);
-    renderBoards(player, player2)
+    player.updateMatrix();
+    player2.updateMatrix();
+    renderBoards(player, player2);
+
 }
 
 const lockShips = document.createElement('div');
@@ -68,7 +71,7 @@ sub[0].setAttribute('data-name', 'submarine');
 
 
 const playerPlace = (col1, row1, length, rot, aPlayer, name) => {
-    console.log(`beginning rotated? ${rot}`)
+    // console.log(`beginning rotated? ${rot}`)
     const n = name;
     const row = row1 +1 ;
     const col = alpha[col1];
@@ -79,9 +82,9 @@ const playerPlace = (col1, row1, length, rot, aPlayer, name) => {
     if(isRotated === 'true'){
         dir = 'd'
     }
-    console.log(`direction is ${dir}`)
+    // console.log(`direction is ${dir}`)
     const valid = aPlayer.placeShip(len,coord,dir,n);
-    console.log(`This was valid? ${valid}`)
+    // console.log(`This was valid? ${valid}`)
     return valid;
 }
 
@@ -90,7 +93,7 @@ function rotate(ev){
         let valid = true;
         const selected = document.getElementsByClassName('selected')[0].parentElement;
         let currentRotation = selected.style.transform;
-        console.log('rotating');
+        // console.log('rotating');
         if((currentRotation === '')||(currentRotation === 'rotate(0deg)') ){
             currentRotation = 0;
             selected.style.transform = `rotate(90deg)`;
@@ -101,7 +104,7 @@ function rotate(ev){
             let newRotation = currentRotation[7] + currentRotation[8];
             newRotation = Number(newRotation);
             newRotation -= 90;
-            console.log(newRotation)
+            // console.log(newRotation)
             selected.style.transform = `rotate(${newRotation}deg)`;
             selected.setAttribute('data-rotated', 'false');
         }
@@ -110,17 +113,17 @@ function rotate(ev){
         // if ship is valid overwrite
         
         
-        console.log(selected.parentElement);
+        // console.log(selected.parentElement);
         if(selected.parentElement.getAttribute('class') === 'board'){
             const isRotated = selected.dataset.rotated;
             const length = Number(selected.dataset.ship);
                 const gArea = selected.style.gridArea.split('/');
-                console.log(gArea);
+                // console.log(gArea);
                 const col1 = Number(gArea[0] -2);
                 // const colNext = Number(gArea[5]);
-                console.log(col1);
+                // console.log(col1);
                 const row1 = Number(gArea[1] -2);
-                console.log(row1);
+                // console.log(row1);
                 valid = playerPlace(col1, row1, length, isRotated, player, selected.dataset.name) 
         }
 
@@ -136,13 +139,13 @@ function rotate(ev){
                 let newRotation = currentRotation[7] + currentRotation[8];
                 newRotation = Number(newRotation);
                 newRotation -= 90;
-                console.log(newRotation)
+                // console.log(newRotation)
                 selected.style.transform = `rotate(${newRotation}deg)`;
                 selected.setAttribute('data-rotated', 'false');
             }
-            console.log(selected.firstChild)
+            // console.log(selected.firstChild)
             selected.firstChild.classList.add('horizontal-shake');
-            console.log('applying shake')
+            // console.log('applying shake')
             setTimeout(() => {selected.firstChild.classList.remove('horizontal-shake')}, '500')
         }
     }  
