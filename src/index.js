@@ -34,7 +34,7 @@ const initialDraw = () => {
     const title = document.createElement('div');
     title.classList.add('title');
     document.body.appendChild(title);
-    title.textContent = 'BATTLESHIP';
+    title.textContent = 'BATTLESHOOP';
     const messageBoard = document.createElement('div');
     messageBoard.setAttribute('id', 'messageBoard');
     messageBoard.textContent = 'Place your ships. Press R key to rotate. When finished lock your ships in to begin the game.';
